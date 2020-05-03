@@ -1,0 +1,31 @@
+<mat-card style="max-width: 400px; margin: auto; margin-top: 50px;">
+    <mat-card-title style="text-align: center; margin-top: 30px; margin-bottom: 30px;">Sign Up</mat-card-title>
+    <mat-card-content>
+        <mat-form-field>
+            <mat-label>Name</mat-label>
+            <input matInput [formControl]="name" required>
+            <mat-error *ngIf="name.invalid">You must enter a value</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Surname</mat-label>
+            <input matInput [formControl]="surname" required>
+            <mat-error *ngIf="surname.invalid">You must enter a value</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Enter your email</mat-label>
+            <input matInput placeholder="pat@example.com" [formControl]="email" required>
+            <mat-error *ngIf="email.invalid">{{getEmailErrorMessage()}}</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Enter your password</mat-label>
+            <input matInput [type]="hide ? 'password' : 'text'" [formControl]="password" required>
+            <mat-error *ngIf="password.invalid">{{getPasswordErrorMessage()}}</mat-error>
+            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+                [attr.aria-pressed]="hide">
+                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+        </mat-form-field>
+        <button mat-raised-button color="warn" (click)="signUp()" style="width: 100%; margin-top: 30px;">Sign up</button>
+        <p style="margin-top: 30px; margin-bottom: 30px; text-align: center;">Already have an account? <a routerLink="/login-page">Log In</a></p>
+    </mat-card-content>
+</mat-card>

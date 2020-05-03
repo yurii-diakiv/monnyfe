@@ -1,0 +1,40 @@
+<div style="margin-left: 5%; margin-right: 5%;">
+    <h2 style="text-align: center; margin-top: 30px; margin-bottom: 30px;">Add new expense</h2>
+    <mat-grid-list cols="4" rowHeight="200px" gutterSize="10px">
+        <mat-grid-tile matRipple class="ripple-container mat-elevation-z1" (click)="openDialog('Food', 1)">
+            <mat-icon>fastfood</mat-icon>
+            Food
+        </mat-grid-tile>
+        <mat-grid-tile matRipple class="ripple-container mat-elevation-z1" (click)="openDialog('Health', 2)">
+            <mat-icon>healing</mat-icon>
+            Health
+        </mat-grid-tile>
+        <mat-grid-tile matRipple class="ripple-container mat-elevation-z1" (click)="openDialog('Traveling', 3)">
+            <mat-icon>card_travel</mat-icon>
+            Traveling
+        </mat-grid-tile>
+        <mat-grid-tile matRipple class="ripple-container mat-elevation-z1" (click)="openDialog('Clothes', 4)">
+            <mat-icon>person_outline</mat-icon>
+            Clothes
+        </mat-grid-tile>
+        <mat-grid-tile matRipple class="ripple-container mat-elevation-z1" (click)="openDialog('Cafes', 5)">
+            <mat-icon>local_cafe</mat-icon>
+            Cafes
+        </mat-grid-tile>
+        <mat-grid-tile matRipple class="ripple-container mat-elevation-z1" (click)="openDialog('Entertainments', 7)">
+            <mat-icon>accessibility_new</mat-icon>
+            Entertainments
+        </mat-grid-tile>
+        <mat-grid-tile matRipple class="ripple-container mat-elevation-z1" (click)="openDialog('Transport', 6)">
+            <mat-icon>emoji_transportation</mat-icon>
+            Transport
+        </mat-grid-tile>
+        <mat-grid-tile matRipple class="ripple-container mat-elevation-z1" (click)="openCustomDialog()">
+            <mat-icon>settings</mat-icon>
+            Custom
+        </mat-grid-tile>
+    </mat-grid-list>
+    <p style="margin-top: 60px;">{{ sumOfExpenses }} / {{ limitation.limit }}</p>
+    <mat-progress-bar *ngIf="pbValue<100" mode="determinate" [value]="pbValue"></mat-progress-bar>
+    <mat-progress-bar *ngIf="pbValue>100 || pbValue==100" mode="determinate" color="warn" value="100"></mat-progress-bar>
+</div>

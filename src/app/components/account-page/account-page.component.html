@@ -1,0 +1,44 @@
+<div style="margin-left: 25%; margin-right: 25%;">
+    <h2 style="margin-top: 40px; margin-left: 16px;">{{ user.name }} {{ user.surname }}</h2>
+    <mat-divider></mat-divider>
+
+    <button mat-button style="display: block;" (click)="hide()">
+        Add new category
+        <mat-icon *ngIf="hidden">keyboard_arrow_down</mat-icon>
+        <mat-icon *ngIf="!hidden">keyboard_arrow_up</mat-icon>
+    </button>
+    <mat-form-field *ngIf="!hidden" style="margin-left: 16px;">
+        <mat-label>Name</mat-label>
+        <input matInput [formControl]="newCustomCategory" required>
+        <mat-error *ngIf="newCustomCategory.invalid">You must enter a value</mat-error>
+    </mat-form-field>
+    <button mat-button *ngIf="!hidden" style="margin-left: 10px;" (click)="addCategory()">Add</button>
+
+    <button mat-button style="display: block; margin-top: 10px;" [matMenuTriggerFor]="menu">Delete category</button>
+    <mat-menu #menu="matMenu">
+        <button mat-menu-item *ngFor="let customCategory of customCategories" (click)="deleteCategory(customCategory.id)">
+            <mat-icon>delete</mat-icon> {{ customCategory.name }}
+        </button>
+    </mat-menu>
+
+    <mat-divider></mat-divider>
+
+    <div style="margin-left: 16px;">
+        Monthly limitation: {{ limitation.limit }}
+        <button mat-icon-button (click)="hide2()">
+            <mat-icon style="font-size: 17px;" *ngIf="hidden2">settings</mat-icon>
+            <mat-icon style="font-size: 17px;" *ngIf="!hidden2">keyboard_arrow_up</mat-icon>
+        </button>
+    </div>
+    <mat-form-field *ngIf="!hidden2" style="margin-left: 16px;">
+        <mat-label>Value</mat-label>
+        <input type="number" matInput [formControl]="newLimitation" required>
+        <mat-error *ngIf="newLimitation.invalid">{{getNewLimitationErrorMessage()}}</mat-error>
+    </mat-form-field>
+    <button mat-button style="margin-left: 10px;" *ngIf="!hidden2" (click)="changeLimitation()">Change</button>
+    <mat-divider></mat-divider>
+
+    <button mat-button style="display: block;" (click)=logOut()>
+        Log Out <mat-icon>exit_to_app</mat-icon>
+    </button>
+</div>
